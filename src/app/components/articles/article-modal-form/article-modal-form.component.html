@@ -1,0 +1,45 @@
+<dialog #modal class="modal" (close)="onClose()">
+   <div class="modal-box max-w-xl mx-auto p-6 bg-base-100 shadow-xl rounded-2xl">
+      <h3 class="font-bold text-xl mb-4 text-center text-red-500"> {{ isEditing ? 'Edit Article' : 'New Article' }}
+      </h3>
+      <div class="w-full">
+         <form method="dialog" class="space-y-4 lg:space-y-8">
+            <!-- URL -->
+            <div class="form-control">
+               <label class="label">
+                  <span class="label-text font-bold">Url</span>
+               </label>
+               <input type="url" placeholder="https://example.com/article" class="input input-bordered w-full" />
+            </div>
+            <!-- Author -->
+            <div class="form-control">
+               <label class="label"> <span class="label-text font-bold">Author</span> </label>
+               <input type="text" placeholder="Author name" class="input input-bordered w-full" required />
+            </div>
+            <!-- Title -->
+            <div class="form-control">
+               <label class="label"> <span class="label-text font-bold">Title</span> </label>
+               <input type="text" placeholder="Article title" class="input input-bordered w-full" required />
+            </div>
+            <!-- Subtitle -->
+            <div class="form-control">
+               <label class="label"> <span class="label-text font-bold">Subtitle</span> </label>
+               <input type="text" placeholder="Article subtitle" class="input input-bordered w-full" required />
+            </div>
+            <!-- Description -->
+            <div class="form-control">
+               <label class="label"> <span class="label-text font-bold">Description</span> </label>
+               <textarea placeholder="Write a description about the article..."
+                  class="textarea textarea-bordered w-full" rows="4" required></textarea>
+            </div>
+            <!---- Action Buttons -->
+            <div class="flex flex-row justify-end gap-4">
+               <button type="button" class="btn bg-white text-orange-500 w-40 hover:bg-orange-50"
+                  (click)="onClose()">Cancel</button>
+               <button type="submit" class="btn bg-orange-500 text-white w-40 hover:bg-orange-600"
+                  (click)="onSubmit()">Save</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</dialog>

@@ -1,21 +1,15 @@
 <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
 
-   <!-- NAVBAR -->
    <header>
-      <nav class="bg-red-700 text-white p-4">
-         <div class="container mx-auto flex justify-between items-center">
-            <span class="text-xl font-semibold">News App</span>
-         </div>
-      </nav>
+      <app-navbar />
    </header>
 
    <div class="grid lg:grid-cols-[6fr_3fr] gap-24 mx-8">
-      <!-- CONTENT -->
       <main class="p-4">
-         <app-article />
          <router-outlet></router-outlet>
       </main>
 
       <app-sidebar [articlesCount]="5" />
    </div>
+
 </div>
