@@ -1,0 +1,23 @@
+@if (article) {
+<div class="hero">
+   <div class="flex-col">
+      <h1 class="text-4xl font-bold">
+         {{ article.title }}
+      </h1>
+      <p class="text-xl pt-6">{{ article.description }} </p>
+      <img src="{{ article.image }}" class="rounded-lg shadow-2xl pt-2" />
+      <div class="flex flex-wrap justify-between">
+         <p class="text-left pt-1 text-slate-600">{{ article.description }} </p>
+         <p class="text-right pt-1 text-slate-600">
+            <span class="font-bold">Updated:</span> {{ article.publishedAt }}
+         </p>
+      </div>
+      <p class="text-xl font-bold mt-6">{{ article.author }}</p>
+      <p class="py-3 text-xl">
+         {{ article.content }}
+      </p>
+   </div>
+</div>
+} @else {
+<span class="text-red-500 text-2xl">The requested article could not be found.</span>
+}

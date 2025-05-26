@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ArticleComponent } from 'src/app/components/article/article.component';
-import { AsideArticleComponent } from 'src/app/components/aside-article/aside-article.component';
+import { ArticleComponent } from 'src/app/components/articles/article/article.component';
+import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 
 @Component({
    selector: 'app-root',
    standalone: true,
-   imports: [RouterOutlet, ArticleComponent, AsideArticleComponent],
+   imports: [RouterOutlet, ArticleComponent, SidebarComponent],
    templateUrl: './app.component.html',
    styleUrl: './app.component.css',
 })

@@ -66,7 +66,6 @@ export default [
          "block-spacing": ["error", "always"],
          "eol-last": ["error", "always"],
          "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
-         "lines-between-class-members": ["error", "always"],
          "no-mixed-spaces-and-tabs": "error",
          "padded-blocks": ["error", "never"],
          "space-in-parens": ["error", "never"],
