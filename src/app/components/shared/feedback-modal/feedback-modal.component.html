@@ -1,0 +1,12 @@
+<dialog #dialogRef class="modal">
+   <div class="modal-box text-center text-white" [ngClass]="boxClass">
+      <div class="flex justify-center items-center text-5xl mb-4">
+         <span [innerHTML]="iconSvg"></span>
+      </div>
+      <h3 class="font-bold text-2xl">{{ title }}</h3>
+      <p class="py-4 text-xl">{{ message }}</p>
+      <div class="modal-action justify-center">
+         <button class="btn btn-lg btn-outline" (click)="close()">Close</button>
+      </div>
+   </div>
+</dialog>

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ArticleFormComponent } from 'src/app/components/articles/article-form/article-form.component';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
+import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
 
 @Component({
    selector: 'app-add-article',
@@ -20,6 +21,7 @@ export class AddArticleComponent implements AfterViewInit, OnDestroy {
 
    private readonly router = inject(Router);
    private readonly articleApiService = inject(ArticleApiService);
+   private readonly modalFeedbackService = inject(ModalFeedbackService);
 
    ngAfterViewInit() {
       this.modalRef.nativeElement.showModal();
@@ -29,9 +31,8 @@ export class AddArticleComponent implements AfterViewInit, OnDestroy {
    onSave(payload: Article): void {
       this.dataSubscription = this.articleApiService.addArticle({ ...payload, id: Date.now() }).subscribe({
          next: () => {
-            console.log('article saved!');
+            this.modalFeedbackService.show('Article was successfully created!', 'success');
             this.onClose();
-            // TODO: show a message that article was successfully created and redirect.
          },
          error: (error) => console.error('Error creating article:', error),
       });

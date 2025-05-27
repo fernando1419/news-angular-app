@@ -4,6 +4,7 @@ import { firstValueFrom, Subscription } from 'rxjs';
 import { ArticleFormComponent } from 'src/app/components/articles/article-form/article-form.component';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
+import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
 
 @Component({
    selector: 'app-edit-article',
@@ -21,6 +22,7 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    private readonly router = inject(Router);
    private readonly route = inject(ActivatedRoute);
    private readonly articleApiService = inject(ArticleApiService);
+   private readonly modalFeedbackService = inject(ModalFeedbackService);
 
    ngOnInit(): void {
       this.articleId = this.route.snapshot.paramMap.get('id');
@@ -53,9 +55,8 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    onSave(payload: Article): void {
       this.dataSubscription = this.articleApiService.updateArticle(payload.id, payload).subscribe({
          next: () => {
-            console.log('article updated!');
+            this.modalFeedbackService.show('Article was successfully updated!', 'success');
             this.onClose();
-            // TODO: show a message that article was successfully updated and redirect.
          },
          error: (error) => console.error('Error updating article:', error),
       });
