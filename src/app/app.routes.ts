@@ -18,4 +18,8 @@ export const routes: Routes = [
       path: 'articles/:id',
       loadComponent: () => import('src/app/components/articles/article/article.component').then(m => m.ArticleComponent),
    },
+   {
+      path: '**',
+      loadComponent: () => import('src/app/pages/not-found.component').then(m => m.NotFoundComponent),
+   },
 ];
