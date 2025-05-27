@@ -26,8 +26,8 @@
       "subtitle": "Kevin Harvick's no-nonsense approach to accountability in the CARS Tour offers a witty lesson for Roger Penske after the Indy 500 scandal",
       "description": "It seems like Team Penske can't seem to learn from their past mistakes. After facing the ire of the entire IndyCar community over the Push-to-Pass controversy last year, Team Penske has done it again. This time at the biggest stage, that has once aga... [5002 chars]",
       "imageUrl": "https://image-cdn.essentiallysports.com/wp-content/uploads/Roger-Penske-Kevin-Harvick.jpg",
-      "createdAt": "2025-05-20T23:15:43Z",
-      "updatedAt": "2025-05-19T23:37:28Z",
+      "createdAt": "2025-05-27T20:27:48Z",
+      "updatedAt": "2025-05-27T20:27:48Z",
       "author": "Essentially Sports"
     },
     {
@@ -401,24 +401,14 @@
       "author": "Boston.com"
     },
     {
-      "imageUrl": "https://fist1",
-      "author": "https://fist1",
-      "title": "https://fist1",
-      "subtitle": "https://fist1",
-      "description": "https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1https://fist1",
-      "id": 1748343525283,
-      "createdAt": "2025-05-27T10:58:45Z",
-      "updatedAt": "2025-05-27T10:58:45Z"
-    },
-    {
-      "imageUrl": "https://asdfasdfasdfasdf",
-      "author": "https://asdfasdfasdfasdf",
-      "title": "https://asdfasdfasdfasdf",
-      "subtitle": "https://asdfasdfasdfasdf",
-      "description": "https://asdfasdfasdfasdfhttps://asdfasdfasdfasdfhttps://asdfasdfasdfasdfhttps://asdfasdfasdfasdfhttps://asdfasdfasdfasdf",
-      "id": 1748345308963,
-      "createdAt": "2025-05-27T11:28:28Z",
-      "updatedAt": "2025-05-27T11:28:28Z"
+      "imageUrl": "https://example.com",
+      "author": "https://example.com",
+      "title": "https://example.com",
+      "subtitle": "https://example.com",
+      "description": "https://example.comhttps://example.comhttps://example.comhttps://example.comhttps://example.comhttps://example.comhttps://example.com",
+      "id": 1748378063606,
+      "createdAt": "2025-05-27T20:34:23Z",
+      "updatedAt": "2025-05-27T20:34:23Z"
     }
   ]
 }

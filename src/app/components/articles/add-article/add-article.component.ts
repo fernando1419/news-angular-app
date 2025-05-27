@@ -39,7 +39,7 @@ export class AddArticleComponent implements AfterViewInit, OnDestroy {
    }
 
    onClose() {
-      this.router.navigate(['/articles']);
+      this.router.navigate(['/']);
    }
 
    onKeyDown(event: KeyboardEvent) {

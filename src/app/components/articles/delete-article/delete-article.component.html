@@ -3,7 +3,7 @@
       <h3 class="font-bold text-xl mb-4 text-left text-red-500"> Delete Article </h3>
       <div class="w-full">
          <form (submit)="onSubmit()" class="space-y-4 lg:space-y-6">
-            <div>Are you sure you want to delete the article with id {{ articleId }}?</div>
+            <div>Are you sure you want to delete the article with id {{ article?.id }}?</div>
             <div class="flex flex-row justify-end gap-4">
                <button type="button" class="btn bg-white text-orange-500 w-40 hover:bg-orange-50" (click)="onClose()">
                   No

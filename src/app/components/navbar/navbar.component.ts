@@ -32,15 +32,11 @@ export class NavbarComponent {
       return null;
    }
 
-   showNewArticleButton: Signal<boolean> = computed(() => this.currentUrl() === '/articles');
+   showNewArticleButton: Signal<boolean> = computed(() => this.currentUrl() === '/' || this.currentUrl() === '/articles');
 
    showEditDeleteArticlesButtons: Signal<boolean> = computed(() => {
       const url: string = this.currentUrl();
       return url.startsWith('/articles/') && url.split('/').length === 3 && this.currentId() !== null;
    });
-
-   protected onDelete(): void {
-      console.log('onDelete()...');
-   }
 }
 

@@ -1,25 +1,44 @@
 import { Routes } from '@angular/router';
-import { AddArticleComponent } from 'src/app/components/articles/add-article/add-article.component';
-import { DeleteArticleComponent } from 'src/app/components/articles/delete-article/delete-article.component';
-import { EditArticleComponent } from 'src/app/components/articles/edit-article/edit-article.component';
+import { MainLayoutComponent } from 'src/app/layouts/main-layout/main-layout.component';
+import { articleResolver } from 'src/app/resolvers/article.resolver';
 
 export const routes: Routes = [
-   { path: '', redirectTo: '/articles', pathMatch: 'full' },
+   // { path: '', redirectTo: '/', pathMatch: 'full' },
    {
-      path: 'articles',
-      loadComponent: () => import('src/app/components/articles/article/article.component').then(m => m.ArticleComponent),
+      path: '',
+      component: MainLayoutComponent,
       children: [
-         { path: 'new', component: AddArticleComponent },
-         { path: ':id/edit', component: EditArticleComponent },
-         { path: ':id/delete', component: DeleteArticleComponent },
+         { path: '', title: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
+         {
+            path: 'articles',
+            title: 'articles',
+            // TODO: CHANGE HERE LATER ON TO articles-list.
+            loadComponent: () => import('src/app/components/articles/show-article/show-article.component').then(m => m.ShowArticleComponent),
+         },
+         {
+            path: 'articles/new',
+            title: 'New Article',
+            loadComponent: () => import('./components/articles/add-article/add-article.component').then(m => m.AddArticleComponent),
+         },
+         {
+            path: 'articles/:id',
+            title: 'Article Detail',
+            loadComponent: () => import('./components/articles/show-article/show-article.component').then(m => m.ShowArticleComponent),
+            resolve: { article: articleResolver },
+         },
+         {
+            path: 'articles/:id/edit',
+            title: 'Edit Article',
+            loadComponent: () => import('./components/articles/edit-article/edit-article.component').then(m => m.EditArticleComponent),
+            resolve: { article: articleResolver },
+         },
+         {
+            path: 'articles/:id/delete',
+            title: 'Delete Article',
+            loadComponent: () => import('./components/articles/delete-article/delete-article.component').then(m => m.DeleteArticleComponent),
+            resolve: { article: articleResolver },
+         },
       ],
    },
-   {
-      path: 'articles/:id',
-      loadComponent: () => import('src/app/components/articles/article/article.component').then(m => m.ArticleComponent),
-   },
-   {
-      path: '**',
-      loadComponent: () => import('src/app/pages/not-found.component').then(m => m.NotFoundComponent),
-   },
+   { path: '**', loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent) },
 ];

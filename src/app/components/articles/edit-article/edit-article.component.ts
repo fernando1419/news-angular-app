@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ArticleFormComponent } from 'src/app/components/articles/article-form/article-form.component';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
@@ -17,7 +17,6 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    @ViewChild('modal') modalRef!: ElementRef<HTMLDialogElement>;
    private dataSubscription: Subscription | undefined;
    protected article: Article | null = null;
-   protected articleId: string | null = null;
 
    private readonly router = inject(Router);
    private readonly route = inject(ActivatedRoute);
@@ -25,29 +24,12 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    private readonly modalFeedbackService = inject(ModalFeedbackService);
 
    ngOnInit(): void {
-      this.articleId = this.route.snapshot.paramMap.get('id');
-      if (this.articleId) {
-         this.getArticle(Number(this.articleId));
-      }
+      this.dataSubscription = this.route.data.subscribe(data => {
+         this.article = data['article'];
+      });
    }
 
    ngAfterViewInit(): void {
-      this.displayModal();
-   }
-
-   private async getArticle(articleId: number): Promise<void> {
-      try {
-         this.article = await firstValueFrom(this.articleApiService.getArticleById(articleId));
-         if (!this.article) {
-            this.router.navigate(['/articles']);
-         }
-         this.displayModal();
-      } catch (error) {
-         console.error('Error when fetching an article:', error);
-      }
-   }
-
-   private displayModal() {
       this.modalRef.nativeElement.showModal();
       setTimeout(() => this.modalRef.nativeElement.focus(), 0);
    }
@@ -73,6 +55,8 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    onClose() {
-      this.router.navigate(['articles', this.articleId]);
+      if (this.article) {
+         this.router.navigate(['articles', this.article.id]);
+      }
    }
 }

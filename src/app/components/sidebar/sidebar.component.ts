@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ArticleAsideComponent } from 'src/app/components/articles/article-aside/article-aside.component';
+import { ArticleAsideComponent } from 'src/app/components/sidebar/article-aside/article-aside.component';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
 
