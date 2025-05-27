@@ -1,0 +1,8 @@
+<dialog #modal class="modal" role="dialog" (keydown)="onKeyDown($event)">
+   <div class="modal-box max-w-xl mx-auto p-6 bg-base-100 shadow-xl rounded-2xl">
+      <h3 class="font-bold text-xl mb-4 text-center text-red-500"> New Article </h3>
+      <div class="w-full">
+         <app-article-form [article]="article" (formClosed)="onClose()" (savePayload)="onSave($event)" />
+      </div>
+   </div>
+</dialog>

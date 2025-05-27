@@ -1,6 +1,6 @@
 <aside class="p-4 hidden lg:block">
    @for (article of sidebarArticles; track article.id; let isEven = $even) {
-   <app-article-aside [title]="article.title" [author]="article.author" [imageUrl]="article.image"
+   <app-article-aside [title]="article.title" [author]="article.author" [imageUrl]="article.imageUrl"
       backgroundColor="{{ isEven ? 'bg-orange-50' : 'bg-gray-50' }}" />
    } @empty {
    <span class="text-red-500">There are not related articles to be displayed yet!.</span>

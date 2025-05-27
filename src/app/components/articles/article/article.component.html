@@ -4,17 +4,17 @@
       <h1 class="text-4xl font-bold">
          {{ article.title }}
       </h1>
-      <p class="text-xl pt-6">{{ article.description }} </p>
-      <img src="{{ article.image }}" class="rounded-lg shadow-2xl pt-2" />
+      <p class="text-xl pt-6">{{ article.subtitle }} </p>
+      <img src="{{ article.imageUrl }}" class="rounded-lg shadow-2xl pt-2" />
       <div class="flex flex-wrap justify-between">
-         <p class="text-left pt-1 text-slate-600">{{ article.description }} </p>
+         <p class="text-left pt-1 text-slate-600">{{ article.subtitle }} </p>
          <p class="text-right pt-1 text-slate-600">
-            <span class="font-bold">Updated:</span> {{ article.publishedAt }}
+            <span class="font-bold">Updated:</span> {{ article.updatedAt }}
          </p>
       </div>
       <p class="text-xl font-bold mt-6">{{ article.author }}</p>
       <p class="py-3 text-xl">
-         {{ article.content }}
+         {{ article.description }}
       </p>
    </div>
 </div>

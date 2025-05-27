@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
-import { ArticleModalFormComponent } from 'src/app/components/articles/article-modal-form/article-modal-form.component';
+import { AddArticleComponent } from 'src/app/components/articles/add-article/add-article.component';
+import { DeleteArticleComponent } from 'src/app/components/articles/delete-article/delete-article.component';
+import { EditArticleComponent } from 'src/app/components/articles/edit-article/edit-article.component';
 
 export const routes: Routes = [
    { path: '', redirectTo: '/articles', pathMatch: 'full' },
@@ -7,8 +9,9 @@ export const routes: Routes = [
       path: 'articles',
       loadComponent: () => import('src/app/components/articles/article/article.component').then(m => m.ArticleComponent),
       children: [
-         { path: 'new', component: ArticleModalFormComponent },
-         { path: ':id/edit', component: ArticleModalFormComponent },
+         { path: 'new', component: AddArticleComponent },
+         { path: ':id/edit', component: EditArticleComponent },
+         { path: ':id/delete', component: DeleteArticleComponent },
       ],
    },
    {
