@@ -31,7 +31,7 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
 
    ngAfterViewInit(): void {
       this.modalRef.nativeElement.showModal();
-      setTimeout(() => this.modalRef.nativeElement.focus(), 0);
+      setTimeout(() => this.modalRef.nativeElement.focus(), 100);
    }
 
    onSave(payload: Article): void {

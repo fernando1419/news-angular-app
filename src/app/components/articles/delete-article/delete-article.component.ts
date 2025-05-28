@@ -30,7 +30,7 @@ export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy 
 
    ngAfterViewInit(): void {
       this.modalRef.nativeElement.showModal();
-      setTimeout(() => this.modalRef.nativeElement.focus(), 0);
+      setTimeout(() => this.modalRef.nativeElement.focus(), 100);
    }
 
    onKeyDown(event: KeyboardEvent) {
@@ -57,6 +57,8 @@ export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy 
    };
 
    onClose() {
-      this.router.navigate(['articles']);
+      if (this.article) {
+         this.router.navigate(['articles', this.article.id]);
+      }
    }
 }

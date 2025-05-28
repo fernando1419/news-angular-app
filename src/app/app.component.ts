@@ -1,12 +1,13 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FeedbackModalComponent } from 'src/app/components/shared/feedback-modal/feedback-modal.component';
+import { LoadingSpinnerComponent } from 'src/app/components/shared/loading-spinner/loading-spinner.component';
 import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
 
 @Component({
    selector: 'app-root',
    standalone: true,
-   imports: [RouterOutlet, FeedbackModalComponent],
+   imports: [RouterOutlet, FeedbackModalComponent, LoadingSpinnerComponent],
    templateUrl: './app.component.html',
    styleUrl: './app.component.css',
 })

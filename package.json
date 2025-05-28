@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start-angular": "ng serve --open",
-    "start-json-server": "json-server ./src/app/data/db.json --port 3000 delay 1000",
+    "start-json-server": "json-server ./src/app/data/db.json --port 3000",
     "start": "concurrently \"npm run start-angular\" \"npm run start-json-server\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

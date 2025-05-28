@@ -25,13 +25,13 @@ export class AddArticleComponent implements AfterViewInit, OnDestroy {
 
    ngAfterViewInit() {
       this.modalRef.nativeElement.showModal();
-      setTimeout(() => this.modalRef.nativeElement.focus(), 0);
+      setTimeout(() => this.modalRef.nativeElement.focus(), 100);
    }
 
    onSave(payload: Article): void {
       this.dataSubscription = this.articleApiService.addArticle({ ...payload, id: Date.now() }).subscribe({
          next: () => {
-            this.modalFeedbackService.show('Article was successfully created!', 'success');
+            // this.modalFeedbackService.show('Article was successfully created!', 'success');
             this.onClose();
          },
          error: (error) => console.error('Error creating article:', error),
