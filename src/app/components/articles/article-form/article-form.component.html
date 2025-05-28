@@ -2,7 +2,7 @@
 
    <div class="form-control">
       <label class="label"> <span class="label-text font-bold">Image Url</span> </label>
-      <input type="url" placeholder="https://example.com/article" class="input input-bordered w-full"
+      <input type="url" placeholder="https://example.com/article" class="input input-bordered w-full" trimValue
          formControlName="imageUrl" />
       @if (f['imageUrl'].touched && f['imageUrl'].invalid) {
       <span class="text-red-500 text-sm"> Must be a valid url. It should start with http:// or https://. </span>
@@ -11,7 +11,7 @@
 
    <div class="form-control">
       <label class="label"> <span class="label-text font-bold">Author</span> </label>
-      <input type="text" placeholder="Author name" class="input input-bordered w-full" required
+      <input type="text" placeholder="Author name" class="input input-bordered w-full" required trimValue
          formControlName="author" />
       @if (f['author'].touched && f['author'].invalid) {
       <span class="text-red-500 text-sm"> Author is required. </span>
@@ -20,7 +20,7 @@
 
    <div class="form-control">
       <label class="label"> <span class="label-text font-bold">Title</span> </label>
-      <input type="text" placeholder="Article title" class="input input-bordered w-full" required
+      <input type="text" placeholder="Article title" class="input input-bordered w-full" required trimValue
          formControlName="title" />
       @if (f['title'].touched && f['title'].invalid) {
       <span class="text-red-500 text-sm"> Title is required and must be at least 5 characters long. </span>
@@ -29,7 +29,7 @@
 
    <div class="form-control">
       <label class="label"> <span class="label-text font-bold">Subtitle</span> </label>
-      <input type="text" placeholder="Article subtitle" class="input input-bordered w-full" required
+      <input type="text" placeholder="Article subtitle" class="input input-bordered w-full" required trimValue
          formControlName="subtitle" />
       @if (f['subtitle'].touched && f['subtitle'].invalid) {
       <span class="text-red-500 text-sm"> Subtitle is required and must be at least 5 characters long. </span>
@@ -39,7 +39,7 @@
    <div class="form-control">
       <label class="label"> <span class="label-text font-bold">Description</span> </label>
       <textarea placeholder="Write a description about the article..." class="textarea textarea-bordered w-full"
-         rows="4" required formControlName="description"></textarea>
+         trimValue rows="4" required formControlName="description"></textarea>
       @if (f['description'].touched && f['description'].invalid) {
       <span class="text-red-500 text-sm"> Description is required and must be at least 100 characters long. </span>
       }

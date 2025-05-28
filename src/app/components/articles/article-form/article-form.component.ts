@@ -1,11 +1,12 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TrimValueDirective } from 'src/app/directives/trim-value.directive';
 import { Article } from 'src/app/models/article.interface';
 
 @Component({
    selector: 'app-article-form',
    standalone: true,
-   imports: [ReactiveFormsModule],
+   imports: [ReactiveFormsModule, TrimValueDirective],
    templateUrl: './article-form.component.html',
    styleUrl: './article-form.component.css',
 })
