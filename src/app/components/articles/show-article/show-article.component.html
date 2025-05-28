@@ -1,25 +1,22 @@
 @if (article) {
-<div class="hero">
-   <div class="flex-col">
-      <h1 class="text-4xl font-bold">
-         {{ article.title }}
-      </h1>
-      <p class="text-xl pt-6">{{ article.subtitle }} </p>
-      <img src="{{ article.imageUrl }}" class="rounded-lg shadow-2xl pt-2" />
-      <div class="flex flex-wrap justify-between">
-         <p class="text-left pt-1 text-slate-600">{{ article.subtitle }} </p>
-         <p class="text-right pt-1 text-slate-600">
-            <span class="font-bold">Updated:</span> {{ article.updatedAt }}
-         </p>
-      </div>
-      <p class="text-xl font-bold mt-6">{{ article.author }}</p>
-      <p class="py-3 text-xl">
-         {{ article.description }}
+<div class="flex-col">
+   <h1 class="text-4xl font-bold">
+      {{ article.title }}
+   </h1>
+   <p class="text-xl pt-6">{{ article.subtitle }} </p>
+   <img [src]="article.imageUrl || 'https://placehold.co/1080x500?text=No+image'"
+      class="rounded-lg object-fit shadow-2xl pt-2" />
+   <div class="flex flex-wrap justify-between mt-4">
+      <p class="text-left pt-1 text-slate-600">{{ article.subtitle }} </p>
+      <p class="text-right pt-1 text-slate-600">
+         <span class="font-bold">Updated:</span> {{ article.updatedAt }}
       </p>
    </div>
+   <p class="text-xl font-bold mt-6">{{ article.author }}</p>
+   <p class="py-3 text-xl break-words">
+      {{ article.description }}
+   </p>
 </div>
 } @else {
 <span class="text-red-500 text-2xl">The requested article could not be found.</span>
 }
-
-<!-- <router-outlet></router-outlet> -->

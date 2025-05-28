@@ -1,17 +1,17 @@
-<div class="grid grid-cols-3 min-h-screen">
-   <div class="col-span-3">
+<div class="grid grid-cols-1 xl:grid-cols-3 min-h-screen">
+   <div class="xl:col-span-3">
       <header>
          <app-navbar />
       </header>
    </div>
 
-   <div class="col-span-2">
+   <div class="xl:col-span-2">
       <main class="p-4">
          <router-outlet></router-outlet>
       </main>
    </div>
 
-   <div class="col-span-1">
+   <div class="xl:col-span-1">
       <app-sidebar [articlesCount]="5" />
    </div>
 
