@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.interface';
 
 const API_URL: string = `http://localhost:3000/articles`;
@@ -23,25 +23,47 @@ export class ArticleApiService {
       );
    }
 
+   getLatestArticles(count: number = 5): Observable<Article[]> {
+      return this.http.get<Article[]>(API_URL).pipe(
+         catchError((error) => this.handleError(error)),
+         map((articles) => {
+            const latestArticles = articles.slice(-count).reverse();
+            this.articles.set(latestArticles);
+            return this.articles();
+         }),
+      );
+   }
+
+   getRandomArticles(count: number = 5): Observable<Article[]> {
+      return this.http.get<Article[]>(API_URL).pipe(
+         catchError((error) => this.handleError(error)),
+         map((articles) => {
+            const shuffled = articles.sort(() => 0.5 - Math.random());
+            this.articles.set(shuffled.slice(0, count));
+            return this.articles();
+         }),
+      );
+   }
+
    getArticleById(id: number | string): Observable<Article> {
       return this.http.get<Article>(`${API_URL}/${id}`).pipe(
          catchError(error => this.handleError(error)),
       );
-   }
+   };
 
    addArticle(article: Article): Observable<Article> {
       return this.http.post<Article>(API_URL, article).pipe(
          catchError((error) => this.handleError(error)),
          tap(() => this.refreshArticles()),
       );
-   }
+   };
 
    updateArticle(id: number | string, article: Article): Observable<Article> {
       return this.http.patch<Article>(`${API_URL}/${id}`, article).pipe(
          catchError((error) => this.handleError(error)),
          tap(() => this.refreshArticles()),
       );
-   }
+   };
 
    deleteArticle(id: number | string): Observable<void> {
       return this.http.delete<void>(`${API_URL}/${id}`).pipe(

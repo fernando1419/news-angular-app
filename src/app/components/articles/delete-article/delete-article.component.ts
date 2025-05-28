@@ -45,7 +45,7 @@ export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy 
          this.dataSubscription = this.articleApiService.deleteArticle(this.article.id).subscribe({
             next: () => {
                this.modalFeedbackService.show('Article was successfully deleted!', 'warning');
-               this.router.navigate(['articles']);
+               this.router.navigate(['/']);
             },
             error: (error) => console.error('Error deleting article:', error),
          });

@@ -1,3 +1,7 @@
-<app-article />
+@if (latestArticles) {
+<app-article [article]="latestArticles[0]" />
 
-<!-- TODO: add corousel here-->
+<div class="mt-5">
+   <app-article-carousel [articles]="carouselArticles" />
+</div>
+}

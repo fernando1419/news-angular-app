@@ -31,7 +31,7 @@ export class AddArticleComponent implements AfterViewInit, OnDestroy {
    onSave(payload: Article): void {
       this.dataSubscription = this.articleApiService.addArticle({ ...payload, id: Date.now() }).subscribe({
          next: () => {
-            // this.modalFeedbackService.show('Article was successfully created!', 'success');
+            this.modalFeedbackService.show('Article was successfully created!', 'success');
             this.onClose();
          },
          error: (error) => console.error('Error creating article:', error),

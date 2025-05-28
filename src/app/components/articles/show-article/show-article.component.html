@@ -1,11 +1,11 @@
 @if (article) {
 <div class="flex-col">
-   <h1 class="text-4xl font-bold">
+   <h1 class="text-4xl font-bold hover:cursor-pointer" [routerLink]="['/articles', article.id]">
       {{ article.title }}
    </h1>
-   <p class="text-xl pt-6">{{ article.subtitle }} </p>
+   <p class="text-xl pt-6 hover:cursor-pointer" [routerLink]="['/articles', article.id]">{{ article.subtitle }} </p>
    <img [src]="article.imageUrl || 'https://placehold.co/1080x500?text=No+image'"
-      class="rounded-lg object-fit shadow-2xl pt-2" />
+      class="rounded-lg object-fit shadow-2xl pt-2 hover:cursor-pointer" [routerLink]="['/articles', article.id]" />
    <div class="flex flex-wrap justify-between mt-4">
       <p class="text-left pt-1 text-slate-600">{{ article.subtitle }} </p>
       <p class="text-right pt-1 text-slate-600">
@@ -18,5 +18,5 @@
    </p>
 </div>
 } @else {
-<span class="text-red-500 text-2xl">The requested article could not be found.</span>
+<span class="text-red-500 text-2xl">No article could not be found.</span>
 }
