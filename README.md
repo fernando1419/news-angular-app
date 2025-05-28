@@ -1,27 +1,58 @@
-# NewsApp
+# 📰 News Portal - Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Este es un sitio de noticias desarrollado con **Angular 18**, utilizando un enfoque moderno con _standalone components_, rutas asincrónicas, signals y diseño responsivo con **Tailwind CSS** y **DaisyUI**.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Características
 
-## Code scaffolding
+- ✅ Listado de artículos dinámico
+- ✅ Detalle de artículos con rutas dinámicas (`/articles/:id`)
+- ✅ Carousel de artículos destacados
+- ✅ Página de inicio con layout reutilizable
+- ✅ Sidebar condicional según resolución (`xl:`)
+- ✅ Spinner global mediante interceptor HTTP
+- ✅ Manejo de errores y rutas 404
+- ✅ Validación de rutas por ID con guards y resolvers
+- ✅ Responsive design.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Tecnologías
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Angular 18](https://angular.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- JSON Server (para simular API REST)
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📦 Instalación
 
-## Running end-to-end tests
+1. Clonar el repositorio
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   git clone https://github.com/tuusuario/news-portal-angular.git
+   cd news-portal-angular
+   ```
 
-## Further help
+2. Instalar dependencias
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   ```bash
+   npm install
+   ```
+
+3. Iniciar el servidor
+
+   ```bash
+   npm run start
+   ```
+
+## 🧪 Tests
+
+- (Pendiente o agregar pruebas unitarias con Jasmine/Karma o Jest)
+
+## ✨ Autor
+
+Desarrollado por Fernando.
