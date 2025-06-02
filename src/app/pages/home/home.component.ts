@@ -4,6 +4,7 @@ import { ArticleCarouselComponent } from 'src/app/components/articles/article-ca
 import { ShowArticleComponent } from 'src/app/components/articles/show-article/show-article.component';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
+import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
 
 @Component({
    selector: 'app-home',
@@ -18,9 +19,20 @@ export class HomeComponent implements OnInit, OnDestroy {
    carouselArticles: Article[] = [];
    private dataSubscription: Subscription | undefined;
    private readonly articleService = inject(ArticleApiService);
+   private modalFeedbackService = inject(ModalFeedbackService);
 
    ngOnInit(): void {
       this.fetchFeaturedArticles();
+      this.checkDeletionMessage();
+   }
+
+   private checkDeletionMessage(): void {
+      const feedback = localStorage.getItem('deletionMessage');
+      if (feedback) {
+         const { message, type } = JSON.parse(feedback);
+         this.modalFeedbackService.show(message, type);
+         localStorage.removeItem('deletionMessage');
+      }
    }
 
    fetchFeaturedArticles(): void {

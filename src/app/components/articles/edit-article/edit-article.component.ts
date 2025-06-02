@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ArticleFormComponent } from 'src/app/components/articles/article-form/article-form.component';
 import { Article } from 'src/app/models/article.interface';
@@ -13,20 +12,22 @@ import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
    templateUrl: './edit-article.component.html',
    styleUrl: './edit-article.component.css',
 })
-export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EditArticleComponent implements OnChanges, AfterViewInit, OnDestroy, OnChanges {
    @ViewChild('modal') modalRef!: ElementRef<HTMLDialogElement>;
-   private dataSubscription: Subscription | undefined;
-   protected article: Article | null = null;
 
-   private readonly router = inject(Router);
-   private readonly route = inject(ActivatedRoute);
+   @Input() article: Article | null = null;
+   @Output() close = new EventEmitter<void>();
+   @Output() articleUpdated = new EventEmitter<Article>();
+
+   private dataSubscription: Subscription | undefined;
+
    private readonly articleApiService = inject(ArticleApiService);
    private readonly modalFeedbackService = inject(ModalFeedbackService);
 
-   ngOnInit(): void {
-      this.dataSubscription = this.route.data.subscribe(data => {
-         this.article = data['article'];
-      });
+   ngOnChanges(changes: SimpleChanges): void {
+      if (changes['article']?.currentValue) {
+         this.article = changes['article'].currentValue;
+      }
    }
 
    ngAfterViewInit(): void {
@@ -35,12 +36,18 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    onSave(payload: Article): void {
+      if (!payload) { return; }
+
       this.dataSubscription = this.articleApiService.updateArticle(payload.id, payload).subscribe({
-         next: () => {
+         next: (updatedArticle) => {
             this.modalFeedbackService.show('Article was successfully updated!', 'success');
+            this.articleUpdated.emit(updatedArticle);
             this.onClose();
          },
-         error: (error) => console.error('Error updating article:', error),
+         error: (error) => {
+            console.error('Error updating article:', error);
+            this.modalFeedbackService.show('Error updating article...', 'error');
+         },
       });
    }
 
@@ -55,8 +62,7 @@ export class EditArticleComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    onClose() {
-      if (this.article) {
-         this.router.navigate(['articles', this.article.id]);
-      }
+      this.modalRef.nativeElement.close();
+      this.close.emit();
    }
 }

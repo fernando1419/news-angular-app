@@ -17,6 +17,17 @@
       {{ article.description }}
    </p>
 </div>
+
+@if (action() === 'edit') {
+<app-edit-article [article]="article" (close)="closeModal()" (articleUpdated)="onArticleUpdated($event)" />
+}
+
+@if (action() === 'delete') {
+<app-delete-article [article]="article" (close)="closeModal()" (articleDeleted)="onArticleDeleted()" />
+}
+
 } @else {
-<span class="text-red-500 text-2xl">No article could not be found.</span>
+<p class="text-red-500 text-2xl">No article could not be found.</p>
+<button class="btn bg-gray-100 text-orange-500 w-40 hover:bg-orange-100 mt-2" [routerLink]="['/']"> Go to Home
+   Page</button>
 }

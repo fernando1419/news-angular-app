@@ -13,7 +13,6 @@ export const routes: Routes = [
          {
             path: 'articles',
             title: 'articles',
-            // TODO: CHANGE HERE LATER ON TO articles-list.
             loadComponent: () => import('src/app/components/articles/show-article/show-article.component').then(m => m.ShowArticleComponent),
          },
          {
@@ -26,21 +25,20 @@ export const routes: Routes = [
             title: 'Article Detail',
             loadComponent: () => import('./components/articles/show-article/show-article.component').then(m => m.ShowArticleComponent),
             resolve: { article: articleResolver },
-            canActivate: [articleIdGuard],
-         },
-         {
-            path: 'articles/:id/edit',
-            title: 'Edit Article',
-            loadComponent: () => import('./components/articles/edit-article/edit-article.component').then(m => m.EditArticleComponent),
-            resolve: { article: articleResolver },
-            canActivate: [articleIdGuard],
-         },
-         {
-            path: 'articles/:id/delete',
-            title: 'Delete Article',
-            loadComponent: () => import('./components/articles/delete-article/delete-article.component').then(m => m.DeleteArticleComponent),
-            resolve: { article: articleResolver },
-            canActivate: [articleIdGuard],
+            children: [
+               {
+                  path: 'edit',
+                  title: 'Edit Article',
+                  loadComponent: () => import('./components/articles/edit-article/edit-article.component').then(m => m.EditArticleComponent),
+                  canActivate: [articleIdGuard],
+               },
+               {
+                  path: 'delete',
+                  title: 'Delete Article',
+                  loadComponent: () => import('./components/articles/delete-article/delete-article.component').then(m => m.DeleteArticleComponent),
+                  canActivate: [articleIdGuard],
+               },
+            ],
          },
       ],
    },

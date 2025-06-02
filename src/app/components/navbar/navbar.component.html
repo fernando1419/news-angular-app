@@ -10,9 +10,10 @@
          }
          @if(showEditDeleteArticlesButtons()) {
          <button class="bg-white hover:bg-gray-100 text-red-500 py-2 px-4 rounded font-bold"
-            [routerLink]="['/articles', currentId(), 'edit']"> Edit Article </button>
+            [routerLink]="['/articles', currentId()]" [queryParams]="{ action: 'edit' }"> Edit Article </button>
+
          <button class="bg-white hover:bg-gray-100 text-red-500 py-2 px-4 rounded ml-4 font-bold"
-            [routerLink]="['/articles', currentId(), 'delete']"> Delete Article </button>
+            [routerLink]="['/articles', currentId()]" [queryParams]="{ action: 'delete' }"> Delete Article </button>
          }
       </div>
    </div>

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Article } from 'src/app/models/article.interface';
 import { ArticleApiService } from 'src/app/services/article-api.service';
@@ -12,20 +12,21 @@ import { ModalFeedbackService } from 'src/app/services/modal-feedback.service';
    templateUrl: './delete-article.component.html',
    styleUrl: './delete-article.component.css',
 })
-export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DeleteArticleComponent implements AfterViewInit, OnDestroy, OnChanges {
    @ViewChild('modal') modalRef!: ElementRef<HTMLDialogElement>;
    private dataSubscription: Subscription | undefined;
-   protected article: Article | null = null;
+   @Input() article: Article | null = null;
+   @Output() close = new EventEmitter<void>();
+   @Output() articleDeleted = new EventEmitter<void>();
 
    private readonly router = inject(Router);
-   private readonly route = inject(ActivatedRoute);
    private readonly articleApiService = inject(ArticleApiService);
    private readonly modalFeedbackService = inject(ModalFeedbackService);
 
-   ngOnInit(): void {
-      this.dataSubscription = this.route.data.subscribe(data => {
-         this.article = data['article'];
-      });
+   ngOnChanges(changes: SimpleChanges): void {
+      if (changes['article']?.currentValue) {
+         this.article = changes['article'].currentValue;
+      }
    }
 
    ngAfterViewInit(): void {
@@ -41,15 +42,17 @@ export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy 
    }
 
    onSubmit() {
-      if (this.article) {
-         this.dataSubscription = this.articleApiService.deleteArticle(this.article.id).subscribe({
-            next: () => {
-               this.modalFeedbackService.show('Article was successfully deleted!', 'warning');
-               this.router.navigate(['/']);
-            },
-            error: (error) => console.error('Error deleting article:', error),
-         });
-      }
+      if (!this.article) { return; }
+
+      this.dataSubscription = this.articleApiService.deleteArticle(this.article.id).subscribe({
+         next: () => {
+            this.articleDeleted.emit();
+         },
+         error: (error) => {
+            console.error('Error deleting article:', error);
+            this.modalFeedbackService.show('Error deleting article...', 'error');
+         },
+      });
    }
 
    ngOnDestroy(): void {
@@ -57,8 +60,7 @@ export class DeleteArticleComponent implements OnInit, AfterViewInit, OnDestroy 
    };
 
    onClose() {
-      if (this.article) {
-         this.router.navigate(['articles', this.article.id]);
-      }
+      this.modalRef.nativeElement.close();
+      this.close.emit();
    }
 }

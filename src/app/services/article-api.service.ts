@@ -78,6 +78,8 @@ export class ArticleApiService {
 
    private handleError(error: HttpErrorResponse) {
       console.error('API Error:', error);
+      console.trace();
+
       let errorMessage = 'Something went wrong. Please try again later.';
       if (error.status === 400) {
          errorMessage = 'Bad Request. Please check your input.';
